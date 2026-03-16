@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class OpenDoor : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> buttonsList;
+    [SerializeField] private GameObject openButton;
     [SerializeField] private Animator animator;
 
     private const string BOOL_NAME = "isOpen";
@@ -14,10 +16,7 @@ public class OpenDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(GameObject button in buttonsList)
-        {
-            GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>().selectEntered.AddListener(ToggleDoorOpen);
-        }
+        openButton.GetComponent<XRSimpleInteractable>().selectEntered.AddListener(ToggleDoorOpen);
     }
 
     private void ToggleDoorOpen(SelectEnterEventArgs arg0)
