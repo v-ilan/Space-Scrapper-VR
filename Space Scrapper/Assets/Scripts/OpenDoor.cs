@@ -16,7 +16,7 @@ public class OpenDoor : MonoBehaviour
     {
         foreach(GameObject button in buttonsList)
         {
-            GetComponent<XRSimpleInteractable>().selectEntered.AddListener(ToggleDoorOpen);
+            GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>().selectEntered.AddListener(ToggleDoorOpen);
         }
     }
 

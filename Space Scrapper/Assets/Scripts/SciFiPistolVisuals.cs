@@ -10,7 +10,7 @@ public class SciFiPistolVisuals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        XRGrabInteractable xrGrabInteractable = transform.parent.GetComponent<XRGrabInteractable>();
+        UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable xrGrabInteractable = transform.parent.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         xrGrabInteractable.activated.AddListener(OnActivated_StartShooting);
         xrGrabInteractable.deactivated.AddListener(OnDeactivated_StopShooting);
     }
