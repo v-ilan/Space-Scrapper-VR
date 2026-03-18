@@ -4996,6 +4996,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1738158681678029232, guid: 16daa0914ffefd444917f8a5bb25f3bf,
+        type: 3}
+      propertyPath: breakableLayerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 2131413207189122834, guid: 16daa0914ffefd444917f8a5bb25f3bf,
         type: 3}
       propertyPath: m_IsActive

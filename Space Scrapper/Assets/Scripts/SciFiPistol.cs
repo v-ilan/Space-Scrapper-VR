@@ -7,8 +7,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class SciFiPistol : MonoBehaviour
 {
 
-    [SerializeField] LayerMask layerMask;
     [SerializeField] Transform shootSource;
+    [SerializeField] LayerMask breakableLayerMask;
     private float shootingDistance = 1.5f;
     private bool isShooting = false;
     
@@ -43,10 +43,12 @@ public class SciFiPistol : MonoBehaviour
 
     private void RaycastCheck()
     {
-        bool hasHit = Physics.Raycast(shootSource.position, shootSource.forward, out RaycastHit hit, shootingDistance, layerMask);
-        if(hasHit)
-        {   //need to be fixed to use event and not "SendMessege"
-            hit.transform.gameObject.SendMessage("BreakPieces", SendMessageOptions.DontRequireReceiver);
+        if(Physics.Raycast(shootSource.position, shootSource.forward, out RaycastHit hit, shootingDistance, breakableLayerMask))
+        {   //hit an object on a breakable layer
+            if (hit.collider.TryGetComponent(out IBreakable breakable)) 
+            {   //object is IBreakable
+                breakable.Break();
+            }
         }
     }
 }

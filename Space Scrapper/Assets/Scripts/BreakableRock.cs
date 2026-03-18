@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakableRock : MonoBehaviour
+public class BreakableRock : MonoBehaviour, IBreakable
 {
     [SerializeField] private List<GameObject> breakablePieces;
     private float timeToBreak = 1.5f;
@@ -17,7 +17,7 @@ public class BreakableRock : MonoBehaviour
         }
     }
 
-    private void BreakPieces()
+    public void Break()
     {
         timer += Time.deltaTime;
         if(timer > timeToBreak)
