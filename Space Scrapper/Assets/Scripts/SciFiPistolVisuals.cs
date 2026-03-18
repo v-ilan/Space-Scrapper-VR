@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class SciFiPistolVisuals : MonoBehaviour
 {
@@ -10,13 +12,12 @@ public class SciFiPistolVisuals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable xrGrabInteractable = transform.parent.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        XRGrabInteractable xrGrabInteractable = transform.parent.GetComponent<XRGrabInteractable>();
         xrGrabInteractable.activated.AddListener(OnActivated_StartShooting);
         xrGrabInteractable.deactivated.AddListener(OnDeactivated_StopShooting);
     }
 
-    //
-    private void OnActivated_StartShooting(ActivateEventArgs args)
+    private void OnActivated_StartShooting(ActivateEventArgs arg0)
     {
         particles.Play();
     }
