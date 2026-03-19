@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 6461499280092638302}
   - component: {fileID: 2092523154681463361}
   - component: {fileID: 5411317537620499322}
+  - component: {fileID: 7358396782233101747}
   m_Layer: 0
   m_Name: Energy Source
   m_TagString: Untagged
@@ -539,6 +540,18 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &7358396782233101747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510136967482779508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35acc6dc5c753004e8ab53bfbfafce00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnergySource
 --- !u!1 &2602887339042518469
 GameObject:
   m_ObjectHideFlags: 0
