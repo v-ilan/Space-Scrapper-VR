@@ -1,12 +1,13 @@
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 namespace UnityEngine.XR.Content.Interaction
 {
     /// <summary>
     /// An interactable that can be pressed by a direct interactor
     /// </summary>
-    public class XRGripButton : UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable
+    public class XRGripButton : XRBaseInteractable
     {
         [SerializeField]
         [Tooltip("The object that is visually pressed down")]
