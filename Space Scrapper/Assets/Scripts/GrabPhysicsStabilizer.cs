@@ -34,7 +34,7 @@ private Rigidbody _rb;
         // When held, use high-accuracy collision to prevent tunneling through walls
         _rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         
-        // Bonus Senior Tip: Ensure interpolation is on while moving
+        // Ensure interpolation is on while moving
         _rb.interpolation = RigidbodyInterpolation.Interpolate;
     }
 

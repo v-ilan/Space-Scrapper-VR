@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 1711057408210042851}
   - component: {fileID: 4939552846282835534}
   - component: {fileID: 8000092611500614716}
+  - component: {fileID: 3171564898051769234}
   m_Layer: 6
   m_Name: Whole rock
   m_TagString: Untagged
@@ -327,6 +328,18 @@ MonoBehaviour:
   - {fileID: 5742759783870184306}
   - {fileID: 8970376817345850922}
   - {fileID: 8525327323950648907}
+--- !u!114 &3171564898051769234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026097093776802399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883eaaa862103c947a0e294f47a87332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPhysicsStabilizer
 --- !u!1 &2510136967482779508
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +353,7 @@ GameObject:
   - component: {fileID: 2092523154681463361}
   - component: {fileID: 5411317537620499322}
   - component: {fileID: 7358396782233101747}
+  - component: {fileID: 4653706864338892163}
   m_Layer: 0
   m_Name: Energy Source
   m_TagString: Untagged
@@ -552,6 +566,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35acc6dc5c753004e8ab53bfbfafce00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnergySource
+--- !u!114 &4653706864338892163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510136967482779508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883eaaa862103c947a0e294f47a87332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPhysicsStabilizer
 --- !u!1 &2602887339042518469
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +950,7 @@ GameObject:
   - component: {fileID: 7048194815203913780}
   - component: {fileID: 1817482499595225780}
   - component: {fileID: 6148026294804634841}
+  - component: {fileID: 7757780216929097525}
   m_Layer: 0
   m_Name: Rock Part 2
   m_TagString: Untagged
@@ -1125,6 +1152,18 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &7757780216929097525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742759783870184306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883eaaa862103c947a0e294f47a87332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPhysicsStabilizer
 --- !u!1 &8243589383464340566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1266,7 @@ GameObject:
   - component: {fileID: 8468362226230825662}
   - component: {fileID: 4554444256103623964}
   - component: {fileID: 8815262965316694496}
+  - component: {fileID: 6768678410523061392}
   m_Layer: 0
   m_Name: Rock Part 4
   m_TagString: Untagged
@@ -1428,6 +1468,18 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &6768678410523061392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525327323950648907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883eaaa862103c947a0e294f47a87332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPhysicsStabilizer
 --- !u!1 &8970376817345850922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1492,7 @@ GameObject:
   - component: {fileID: 2293181109808010495}
   - component: {fileID: 5193416066788344502}
   - component: {fileID: 1174788440184277190}
+  - component: {fileID: 2719311925870911458}
   m_Layer: 0
   m_Name: Rock Part 3
   m_TagString: Untagged
@@ -1641,6 +1694,18 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &2719311925870911458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970376817345850922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883eaaa862103c947a0e294f47a87332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPhysicsStabilizer
 --- !u!1 &9186053152593017098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,6 +1718,7 @@ GameObject:
   - component: {fileID: 6045551322690768442}
   - component: {fileID: 8614491565223826422}
   - component: {fileID: 153678876386948607}
+  - component: {fileID: 4266229699254949466}
   m_Layer: 0
   m_Name: Rock Part 1
   m_TagString: Untagged
@@ -1854,3 +1920,15 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &4266229699254949466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9186053152593017098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883eaaa862103c947a0e294f47a87332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPhysicsStabilizer

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7337466995312564366}
   - component: {fileID: 2786965978799214820}
   - component: {fileID: 6133550166047120164}
+  - component: {fileID: 7539766743190464916}
   m_Layer: 0
   m_Name: Space Waste Small
   m_TagString: Untagged
@@ -271,3 +272,15 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &7539766743190464916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525174117539208569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883eaaa862103c947a0e294f47a87332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabPhysicsStabilizer
