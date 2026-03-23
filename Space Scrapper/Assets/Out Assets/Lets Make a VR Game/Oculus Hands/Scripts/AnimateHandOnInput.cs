@@ -3,28 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+[RequireComponent(typeof(Animator))]
 public class AnimateHandOnInput : MonoBehaviour
 {
-    [SerializeField] private InputActionProperty pinchAnimationAction;
-    [SerializeField] private InputActionProperty gripAnimationAction;
-    [SerializeField] private Animator handAnimator;
+    [Header("Input References")]
+    [SerializeField] private InputActionReference pinchAction;
+    [SerializeField] private InputActionReference gripAction;
 
-    private void Start()
+    private Animator _handAnimator;
+    
+    // Cache String IDs - Use Hash instead of String for 2x faster Animator updates
+    private static readonly int TriggerHash = Animator.StringToHash("Trigger");
+    private static readonly int GripHash = Animator.StringToHash("Grip");
+
+    private void Awake()
     {
-        if (handAnimator == null)
-        {
-            handAnimator = GetComponent<Animator>();
-        }
+        _handAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        float triggerValue = pinchAnimationAction.action.ReadValue<float>();
-        float gripValue = gripAnimationAction.action.ReadValue<float>();
-        
-        handAnimator.SetFloat("Trigger", triggerValue);
-        handAnimator.SetFloat("Grip", gripValue);
+        // Subscribe to events instead of using Update() - This only fires when the value actually changes
+        pinchAction.action.performed += OnPinchUpdate;
+        pinchAction.action.canceled += OnPinchUpdate;
+
+        gripAction.action.performed += OnGripUpdate;
+        gripAction.action.canceled += OnGripUpdate;
+    }
+
+    private void OnDisable()
+    {
+        //Clean up to prevent memory leaks
+        pinchAction.action.performed -= OnPinchUpdate;
+        pinchAction.action.canceled -= OnPinchUpdate;
+
+        gripAction.action.performed -= OnGripUpdate;
+        gripAction.action.canceled -= OnGripUpdate;
+    }
+
+    private void OnPinchUpdate(InputAction.CallbackContext context)
+    {
+        _handAnimator.SetFloat(TriggerHash, context.ReadValue<float>());
+    }
+
+    private void OnGripUpdate(InputAction.CallbackContext context)
+    {
+        _handAnimator.SetFloat(GripHash, context.ReadValue<float>());
     }
 }
