@@ -29,8 +29,8 @@ public class BreakableRock : MonoBehaviour, IBreakable
                 piece.SetActive(true);
                 piece.transform.parent = null;
             }
-            gameObject.SetActive(false);
             OnObjectBroke?.Invoke(this,EventArgs.Empty);
+            gameObject.SetActive(false);
         }
     }
 }
