@@ -9,11 +9,11 @@ public class LocomotionSettingsUI : MonoBehaviour
     [Header("Data Architecture")]
     [SerializeField] private LocomotionSettingsSO locomotionSettingsSO;
     [SerializeField] private LocomotionManager locomotionManager;
+    [SerializeField] private LocomotionSettings locomotionSettings;
 
     [Header("UI Movement Elements")]
     [SerializeField] private Slider moveSpeedSlider;
     [SerializeField] private TextMeshProUGUI moveSpeedLabel;
-
     private readonly float moveSpeedSliderRatio = 0.1f;
 
     [Header("UI Turning Elements")]
@@ -24,11 +24,12 @@ public class LocomotionSettingsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI snapAngleLabel;
     [SerializeField] private Slider snapAngleSlider;
     private readonly int snapAngleSliderRatio = 15;
+
     [SerializeField] private TextMeshProUGUI turnSpeedLabel;
     [SerializeField] private Slider turnSpeedSlider;
     private readonly int turnSpeedSliderRatio = 5;
 
-    private void Start()
+    private void OnEnable()
     {
         RefreshUIFromSO();
         SetupListeners();
@@ -40,28 +41,28 @@ public class LocomotionSettingsUI : MonoBehaviour
         moveSpeedSlider.onValueChanged.AddListener(val => {
             locomotionSettingsSO.moveSpeed = val * moveSpeedSliderRatio;
             moveSpeedLabel.text = $"Move Speed: {val * moveSpeedSliderRatio:F1} m/s";
-            ApplyToManager();
+            ApplySettings();
         });
 
         // Turning
         snapTurnSlider.onValueChanged.AddListener(val => {
             locomotionSettingsSO.turnType = val == 1 ? LocomotionSettingsSO.TurnType.Snap : LocomotionSettingsSO.TurnType.Continuous;
             UpdateTurnUIContainers(val == 1);
-            ApplyToManager();
+            ApplySettings();
         });
 
         snapAngleSlider.onValueChanged.AddListener(val => {
             float angle = val * snapAngleSliderRatio;
             locomotionSettingsSO.snapAngle = angle;
             snapAngleLabel.text = $"Snap: {angle}°";
-            ApplyToManager();
+            ApplySettings();
         });
 
         turnSpeedSlider.onValueChanged.AddListener(val => {
             float speed = val * turnSpeedSliderRatio;
             locomotionSettingsSO.turnSpeed = speed;
             turnSpeedLabel.text = $"Speed: {speed}°/s";
-            ApplyToManager();
+            ApplySettings();
         });
     }
 
@@ -83,7 +84,7 @@ public class LocomotionSettingsUI : MonoBehaviour
         turnSpeedLabel.text = $"Speed: {locomotionSettingsSO.turnSpeed}°/s";
 
         UpdateTurnUIContainers(snapTurnSlider.value == 1);
-        ApplyToManager();
+        ApplySettings();
     }
 
     private void UpdateTurnUIContainers(bool isSnap)
@@ -92,26 +93,8 @@ public class LocomotionSettingsUI : MonoBehaviour
         turnSpeedContainer.SetActive(!isSnap);
     }
 
-    private void ApplyToManager()
+    private void ApplySettings()
     {
-        if (locomotionManager == null) return;
-
-        // Set Turn Type
-        locomotionManager.leftHandTurnStyle = (locomotionSettingsSO.turnType == LocomotionSettingsSO.TurnType.Snap) 
-            ? LocomotionManager.TurnStyle.Snap 
-            : LocomotionManager.TurnStyle.Smooth;
-        locomotionManager.rightHandTurnStyle = locomotionManager.leftHandTurnStyle; // Sync both for safety
-
-        // Update Speeds/Angles
-        if (locomotionManager.dynamicMoveProvider)
-            locomotionManager.dynamicMoveProvider.moveSpeed = locomotionSettingsSO.moveSpeed;
-
-        if (locomotionManager.snapTurnProvider)
-            locomotionManager.snapTurnProvider.turnAmount = locomotionSettingsSO.snapAngle;
-
-        if (locomotionManager.smoothTurnProvider)
-            locomotionManager.smoothTurnProvider.turnSpeed = locomotionSettingsSO.turnSpeed;
-
-        locomotionSettingsSO.NotifySettingsChanged(); // Trigger EventHandler for anything else listening
+        locomotionSettingsSO.NotifySettingsChanged();
     }
 }
