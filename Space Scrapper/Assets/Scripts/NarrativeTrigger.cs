@@ -11,14 +11,23 @@ public class NarrativeTrigger : MonoBehaviour
     // This runs whenever you change something in the Inspector
     private void OnValidate()
     {
-        bool isLinkedToEvent = CheckIfLinked();
-        
-        if (!isLinkedToEvent)
+#if UNITY_EDITOR
+        // Delaying the check slightly prevents annoying warnings while Unity is still compiling/loading
+        UnityEditor.EditorApplication.delayCall += () =>
         {
-            Debug.LogWarning($"[Narrative Warning] {gameObject.name} has a NarrativeTrigger but is NOT linked to any UnityEvent!", this);
-        }
+            if (this == null) return; // Safety check in case object was deleted
+            
+            bool isLinkedToEvent = CheckIfLinked();
+            
+            if (!isLinkedToEvent)
+            {
+                Debug.LogWarning($"<color=orange>[Narrative Warning]</color> {gameObject.name} has a NarrativeTrigger but is NOT linked to any UnityEvent!", this);
+            }
+        };
+#endif
     }
 
+#if UNITY_EDITOR
     private bool CheckIfLinked()
     {
         // Get all components on this GameObject
@@ -28,30 +37,27 @@ public class NarrativeTrigger : MonoBehaviour
         {
             if (comp == null || comp == this) continue;
 
-            // Use Reflection to find all Public and Private fields
-            var fields = comp.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-            foreach (var field in fields)
+            // 1. Convert the component into raw Inspector data
+            UnityEditor.SerializedObject so = new UnityEditor.SerializedObject(comp);
+            UnityEditor.SerializedProperty prop = so.GetIterator();
+            
+            // 2. Iterate through EVERY serialized field, no matter how deep it is nested
+            // prop.Next(true) tells it to dig into structs and arrays (which XRI uses heavily)
+            while (prop.Next(true))
             {
-                // Is this field a UnityEvent?
-                if (typeof(UnityEventBase).IsAssignableFrom(field.FieldType))
+                // 3. UnityEvents store the method they are calling as a string
+                if (prop.propertyType == UnityEditor.SerializedPropertyType.String)
                 {
-                    UnityEventBase ev = field.GetValue(comp) as UnityEventBase;
-                    if (ev == null) continue;
-
-                    // Check if any persistent listener points to THIS script's TriggerStep method
-                    for (int i = 0; i < ev.GetPersistentEventCount(); i++)
+                    if (prop.stringValue == nameof(TriggerStep))
                     {
-                        if (ev.GetPersistentTarget(i) == this && ev.GetPersistentMethodName(i) == nameof(TriggerStep))
-                        {
-                            return true;
-                        }
+                        return true; // We found the link!
                     }
                 }
             }
         }
         return false;
     }
+#endif
 
     public void TriggerStep()
     {
