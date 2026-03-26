@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoaderCallback : MonoBehaviour
+public class SceneLoaderCallback : MonoBehaviour
 {
     private bool isFirstUpdate = true;
 
