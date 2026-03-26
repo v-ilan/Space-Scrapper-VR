@@ -2192,8 +2192,6 @@ PlayableDirector:
     value: {fileID: 4076904731005092716}
   - key: {fileID: 3959966565614903439, guid: 487e5dc5080c50248a7f40bb4e5a4da0, type: 2}
     value: {fileID: 6769810357078592172}
-  - key: {fileID: 863200272045393029, guid: 487e5dc5080c50248a7f40bb4e5a4da0, type: 2}
-    value: {fileID: 422599425}
   - key: {fileID: 4028656232928751840, guid: 487e5dc5080c50248a7f40bb4e5a4da0, type: 2}
     value: {fileID: 1579157308}
   - key: {fileID: -6514971160860781414, guid: 487e5dc5080c50248a7f40bb4e5a4da0, type: 2}
@@ -2247,6 +2245,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &340476623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3647665137645835899, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4981808440969014283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &349748635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2595,10 +2599,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 422599424}
-    - targetCorrespondingSourceObject: {fileID: 115324, guid: 820591594dcfa124d8a9c5d016d6c22c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 422599425}
   m_SourcePrefab: {fileID: 100100000, guid: 820591594dcfa124d8a9c5d016d6c22c, type: 3}
 --- !u!4 &422599421 stripped
 Transform:
@@ -2632,37 +2632,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 422599423}
   interactableButton: {fileID: 311967871}
+  energySocketInteractor: {fileID: 2125550563}
   boolParameterName: Open
---- !u!114 &422599425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422599422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 215c0ca27aa4d6e42b36cd89cc0ce243, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 422599424}
-          m_TargetAssemblyTypeName: OpenDoor, Assembly-CSharp
-          m_MethodName: set_enabled
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
 --- !u!1001 &431812483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5831,6 +5802,7 @@ GameObject:
   - component: {fileID: 1134663965}
   - component: {fileID: 1134663967}
   - component: {fileID: 1134663968}
+  - component: {fileID: 1134663969}
   m_Layer: 0
   m_Name: TriggerZone
   m_TagString: Untagged
@@ -5921,6 +5893,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42b5fee627281e42a5bb64f38a39e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerZone
+  OnZoneTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1134663969}
+        m_TargetAssemblyTypeName: NarrativeTrigger, Assembly-CSharp
+        m_MethodName: TriggerStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1134663969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134663963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4daf3ea1ecd58c4c94ead05d6a533a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeTrigger
+  stepToTrigger: {fileID: 11400000, guid: b7ddd1163968f2b4494c33c4b0a3a8a0, type: 2}
 --- !u!1 &1147081879
 GameObject:
   m_ObjectHideFlags: 0
@@ -6609,6 +6609,138 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1304795670}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1308647109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1308647110}
+  - component: {fileID: 1308647115}
+  - component: {fileID: 1308647111}
+  - component: {fileID: 1308647114}
+  - component: {fileID: 1308647113}
+  - component: {fileID: 1308647112}
+  m_Layer: 0
+  m_Name: TriggerZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1308647110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308647109}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1427271023}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1308647111
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308647109}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 4, z: 8}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1308647112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308647109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4daf3ea1ecd58c4c94ead05d6a533a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeTrigger
+  stepToTrigger: {fileID: 11400000, guid: 9160dfb1dec513a4eb4d60cc5f668b71, type: 2}
+--- !u!114 &1308647113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308647109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b42b5fee627281e42a5bb64f38a39e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TriggerZone
+  OnZoneTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1308647112}
+        m_TargetAssemblyTypeName: NarrativeTrigger, Assembly-CSharp
+        m_MethodName: TriggerStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!54 &1308647114
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308647109}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!33 &1308647115
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308647109}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1313194118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7336,6 +7468,7 @@ Transform:
   - {fileID: 386262068}
   - {fileID: 1739723714}
   - {fileID: 1712158923}
+  - {fileID: 1308647110}
   m_Father: {fileID: 443157927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1430251470 stripped
@@ -10257,6 +10390,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 502605335419468114}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2125550563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7605562051977281455, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4981808440969014283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340476623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db56dc489488c14b8087694da98a8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnergySocketInteractor
+--- !u!114 &2125550565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340476623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4daf3ea1ecd58c4c94ead05d6a533a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeTrigger
+  stepToTrigger: {fileID: 11400000, guid: d5329c7cc767a95419b5ccb2eeaace31, type: 2}
 --- !u!1001 &502605335419468114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10554,10 +10712,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: Energy Analizer
       objectReference: {fileID: 0}
+    - target: {fileID: 7605562051977281455, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605562051977281455, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605562051977281455, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2125550565}
+    - target: {fileID: 7605562051977281455, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605562051977281455, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605562051977281455, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NarrativeTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605562051977281455, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3647665137645835899, guid: 18f10edfeb6b8b44b8bd786b73405cd8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2125550565}
   m_SourcePrefab: {fileID: 100100000, guid: 18f10edfeb6b8b44b8bd786b73405cd8, type: 3}
 --- !u!1001 &5183990189443049910
 PrefabInstance:
