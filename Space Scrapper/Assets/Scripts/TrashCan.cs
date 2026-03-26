@@ -7,13 +7,20 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class TrashCan : MonoBehaviour
 {
-    public event EventHandler OnObjectTrashed;
+    //public event EventHandler OnObjectTrashed;
+    private NarrativeTrigger narrativeTrigger;
+
+    private void Start()
+    {
+        narrativeTrigger = GetComponent<NarrativeTrigger>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<XRGrabInteractable>() != null)
         {
             other.gameObject.SetActive(false);
-            OnObjectTrashed?.Invoke(this, EventArgs.Empty);
+            narrativeTrigger.TriggerStep();
         }
     }
 }

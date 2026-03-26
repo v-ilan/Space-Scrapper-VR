@@ -8,6 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
 
 public class PlaySteps : MonoBehaviour
 {
+    /*
     [SerializeField] private Transform trashCan;
     [SerializeField] private Transform breakableRock;
     [SerializeField] private Transform analizer;
@@ -61,4 +62,5 @@ public class PlaySteps : MonoBehaviour
             playableDirector.Play();
         }
     }
+    */
 }
