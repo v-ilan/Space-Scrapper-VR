@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4985354210629841559}
   - component: {fileID: 1732533820738788560}
   m_Layer: 0
-  m_Name: Image
+  m_Name: FadeScreen Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
