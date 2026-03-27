@@ -192,6 +192,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Transition Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8841422738568278766, guid: b09d33c8b7830a34d89d176d138cba96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2810,6 +2815,16 @@ PrefabInstance:
       propertyPath: pinchAction
       value: 
       objectReference: {fileID: 1236673236}
+    - target: {fileID: 2589492703852597693, guid: ed70560a78fdda9469d2fa77f7b9abc8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654481526518830935, guid: ed70560a78fdda9469d2fa77f7b9abc8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7767556807077640452, guid: ed70560a78fdda9469d2fa77f7b9abc8,
         type: 3}
       propertyPath: gripAction
