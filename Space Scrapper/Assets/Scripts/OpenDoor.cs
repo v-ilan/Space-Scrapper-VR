@@ -75,7 +75,6 @@ public class OpenDoor : MonoBehaviour
     private void OnPowerRestored(SelectEnterEventArgs args)
     {
         _isPowered = true;
-        ToggleDoor();
     }
 
     private void OnPowerLost(SelectExitEventArgs args)
