@@ -8,7 +8,9 @@ public class SceneTransitionUI : MonoBehaviour
     public static SceneTransitionUI Instance { get; private set; }
 
     [SerializeField] private CanvasGroup faderCanvasGroup;
-    [SerializeField] private float fadeDuration = 1.5f;
+    [SerializeField] private bool fadeOnStart = true;
+    [SerializeField] private float fadeInDuration = 1.5f;
+    [SerializeField] private float fadeOutDuration = 1.5f;
     [SerializeField] private AnimationCurve fadeCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     private void Awake()
@@ -26,18 +28,21 @@ public class SceneTransitionUI : MonoBehaviour
         }
         
         // Start blacked out if you want to fade IN to the main menu
-        faderCanvasGroup.alpha = 1f;
+        faderCanvasGroup.alpha = fadeOnStart ? 1f : 0f;
     }
 
     private void Start()
     {
-        FadeIn(); // Initial fade in when the game actually launches
+        if(fadeOnStart) 
+        {
+            FadeIn();
+        }
     }
 
-    public void FadeIn(Action onComplete = null) => StartCoroutine(FadeRoutine(1, 0, onComplete));
-    public void FadeOut(Action onComplete = null) => StartCoroutine(FadeRoutine(0, 1, onComplete));
+    public void FadeIn(Action onComplete = null) => StartCoroutine(FadeRoutine(1, 0, fadeInDuration, onComplete));
+    public void FadeOut(Action onComplete = null) => StartCoroutine(FadeRoutine(0, 1, fadeOutDuration, onComplete));
 
-    private IEnumerator FadeRoutine(float startAlpha, float targetAlpha, Action onComplete)
+    private IEnumerator FadeRoutine(float startAlpha, float targetAlpha, float fadeDuration, Action onComplete)
     {
         float timer = 0;
         faderCanvasGroup.blocksRaycasts = true; // Prevent clicking buttons while fading
