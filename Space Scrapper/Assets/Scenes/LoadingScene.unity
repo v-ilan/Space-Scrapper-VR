@@ -1065,8 +1065,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1363a6e42e244664692a84f9585a45d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadingProgressUI
+  loadingText: {fileID: 1533082020}
   progressBar: {fileID: 1478309982}
   fillImage: {fileID: 434940181}
+  dotInterval: 1
 --- !u!1 &1297861555
 GameObject:
   m_ObjectHideFlags: 0
