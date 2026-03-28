@@ -11,15 +11,30 @@ public class MusicManager : MonoBehaviour
     private const string PLAYER_PREFS_MUSIC_VOLUME = "MusicVolume";
 
     private AudioSource musicSource;
-    private float volume = 0.5f;
+    private float volume = 0.3f;
 
     private void Awake()
     {
+        if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
-        musicSource = GetComponent<AudioSource>();
-        volume = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_VOLUME, 0.3f);
-        musicSource.volume = volume;
 
+        musicSource = GetComponent<AudioSource>();
+        volume = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_VOLUME, 1f);
+        musicSource.volume = volume;
+        musicSource.loop = true;
+    }
+
+    private void Start() 
+    {
+        PlayBackgroundAmbient();
+    }
+
+    public void PlayBackgroundAmbient() 
+    {
+        if (!musicSource.isPlaying)
+        {
+            musicSource.Play();
+        }
     }
 
     public void ChangeVolume()
