@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.XR.Content.Interaction;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
     [SerializeField] private AudioClipRefsSO audioClipRefsSO;
-
+    
+    [SerializeField] private XRLever engineOnOffLever;
 
     private const string PLAYER_PREFS_SFX_VOLUME = "SFXVolume";
     private float sfxVolume = 1f;
@@ -21,7 +23,8 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        PlaySound(audioClipRefsSO.space, Vector3.zero);
+        //engineOnOffLever.
+        //PlaySound(audioClipRefsSO.space, Vector3.zero);
     }
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplier = 1f)
