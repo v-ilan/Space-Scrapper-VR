@@ -18,25 +18,14 @@ public class OptionsMenuUI : MonoBehaviour
     [SerializeField] private List<Button> returnButtons;
 
     [Header("Sound")]
-    private TextMeshPro musicText;
-    private Slider musicSlider;
-    private TextMeshPro sfxText;
-    private Slider sfxSlider;
+    [SerializeField] private TextMeshPro musicText;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private TextMeshPro sfxText;
+    [SerializeField] private Slider sfxSlider;
 
     private void Awake()
     {
-        InitButtons();
-        Initsounds();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
-    {
-        ShowPage(SubMenu.Options);
-    }
-
-    private void InitButtons()
-    {
+        // One-time setup for persistent button listeners
         locomotionButton.onClick.AddListener(() => ShowPage(SubMenu.Locomotion));
         
         foreach (var btn in returnButtons)
@@ -45,12 +34,41 @@ public class OptionsMenuUI : MonoBehaviour
         }
     }
 
-    private void Initsounds()
+    private void OnEnable()
     {
-        musicSlider.onValueChanged.AddListener((value) => {
-            MusicManager.Instance.ChangeVolume(value);
-            UpdateVisuals();
-            });
+        // Sync Sliders to current Manager values whenever UI is opened
+        musicSlider.value = MusicManager.Instance.GetVolume();
+        sfxSlider.value = SoundManager.Instance.GetVolume();
+
+        // Setup Sound Listeners
+        musicSlider.onValueChanged.AddListener(HandleMusicChange);
+        sfxSlider.onValueChanged.AddListener(HandleSFXChange);
+
+        UpdateVisuals();
+    }
+
+    private void OnDisable()
+    {
+        // Clean up Slider listeners to prevent memory leaks/multiple triggers
+        musicSlider.onValueChanged.RemoveListener(HandleMusicChange);
+        sfxSlider.onValueChanged.RemoveListener(HandleSFXChange);
+    }
+
+    private void Start()
+    {
+        ShowPage(SubMenu.Options);
+    }
+
+    private void HandleMusicChange(float value)
+    {
+        MusicManager.Instance.ChangeVolume(value);
+        UpdateVisuals();
+    }
+
+    private void HandleSFXChange(float value)
+    {
+        SoundManager.Instance.ChangeVolume(value);
+        UpdateVisuals();
     }
 
     private void ShowPage(SubMenu targetPage)
@@ -61,7 +79,8 @@ public class OptionsMenuUI : MonoBehaviour
 
     private void UpdateVisuals()
     {
-        musicText.text = "Music: " + Mathf.RoundToInt(MusicManager.Instance.GetVolume() * 10f);
-        sfxText.text = "SFX: " + Mathf.RoundToInt(SoundManager.Instance.GetVolume() * 10f);
+        // Rounding to 10 for a clean "0-10" display scale
+        musicText.text = "Music: " + Mathf.RoundToInt(musicSlider.value * 10f);
+        sfxText.text = "SFX: " + Mathf.RoundToInt(sfxSlider.value * 10f);
     }
 }
