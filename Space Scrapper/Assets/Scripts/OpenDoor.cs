@@ -18,6 +18,8 @@ public class OpenDoor : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private string boolParameterName = "Open";
+
+    public event EventHandler OnDoorToggle;
     
     private bool _isPowered = false;
     private int _openBoolHash;    // Using a Hash is more performant than a String for Animators
@@ -96,11 +98,12 @@ public class OpenDoor : MonoBehaviour
         {
             doorAnimator.SetBool(_openBoolHash, false);
         }
-        else if (doorAnimator != null)
+        else
         {
             bool currentState = doorAnimator.GetBool(_openBoolHash);
             doorAnimator.SetBool(_openBoolHash, !currentState);
         }
+        OnDoorToggle?.Invoke(this, EventArgs.Empty);
     }
 
     private void TriggerHaptic(IXRSelectInteractor interactor)
