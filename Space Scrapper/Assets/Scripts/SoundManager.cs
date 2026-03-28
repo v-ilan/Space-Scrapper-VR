@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.XR.Content.Interaction;
 
@@ -5,9 +6,9 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
+    public event EventHandler OnVolumeChange;
+
     [SerializeField] private AudioClipRefsSO audioClipRefsSO;
-    
-    [SerializeField] private XRLever engineOnOffLever;
 
     private const string PLAYER_PREFS_SFX_VOLUME = "SFXVolume";
     private float sfxVolume = 1f;
@@ -23,7 +24,6 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        //engineOnOffLever.
         //PlaySound(audioClipRefsSO.space, Vector3.zero);
     }
 
@@ -33,7 +33,23 @@ public class SoundManager : MonoBehaviour
     }
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {
-        PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
+        PlaySound(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volume);
     }
 
+    public void ChangeVolume()
+    {
+        sfxVolume += 0.1f;
+        if (sfxVolume > 01f)
+        {
+            sfxVolume = 0;        
+        }
+        OnVolumeChange?.Invoke(this, EventArgs.Empty);
+        PlayerPrefs.SetFloat(PLAYER_PREFS_SFX_VOLUME, sfxVolume);
+        PlayerPrefs.Save();
+    }
+
+    public float GetVolume()
+    {
+        return sfxVolume;
+    }
 }
